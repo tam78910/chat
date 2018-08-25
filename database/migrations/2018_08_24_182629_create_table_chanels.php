@@ -16,7 +16,7 @@ class CreateTableChanels extends Migration
         Schema::create('chanels', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('status')->comment('0 = closed , 1 = active')->defualt(1);
+            $table->integer('status')->comment('0 = closed , 1 = active')->default(1);
             $table->timestamps();
         });
     }

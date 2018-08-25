@@ -22,6 +22,7 @@ Route::namespace('Api\v1')->group(function () {
    Route::group(['prefix' => 'chats'], function () {
         Route::group(['prefix' => 'chanel'], function () {
             Route::get('/', 'ChatController@chanel')->name('api.chanel.list');
+            Route::post('/', 'ChatController@store')->name('api.chanel.create');
         });
    });
 });

@@ -13,7 +13,7 @@ use App\Interfaces\IChanelRepository;
 
 class ChanelRepository implements IChanelRepository
 {
-    public function create(Chanel $chanel)
+    public function create($chanel)
     {
         return Chanel::create($chanel);
     }

@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ChanelCollection;
 use App\Repositories\ChanelRepository;
+use Illuminate\Http\Request;
 
 class ChatController extends Controller
 {
@@ -24,5 +25,14 @@ class ChatController extends Controller
     public function chanel()
     {
         return new ChanelCollection($this->chanelRepository->get());
+    }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+           'name' => 'required'
+        ]);
+
+        return $this->chanelRepository->create(['name' => $request->name]);
     }
 }

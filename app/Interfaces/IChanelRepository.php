@@ -2,11 +2,9 @@
 
 namespace App\Interfaces;
 
-use App\Chanel;
-
 interface IChanelRepository
 {
-    public function create(Chanel $chanel);
+    public function create($chanel);
 
     public function find($id);
 

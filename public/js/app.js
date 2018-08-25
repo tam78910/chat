@@ -14159,6 +14159,7 @@ __webpack_require__(20);
 
 __webpack_require__(44);
 __webpack_require__(58);
+__webpack_require__(64);
 
 /***/ }),
 /* 20 */
@@ -55848,7 +55849,9 @@ var ChanelList = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (ChanelList.__proto__ || Object.getPrototypeOf(ChanelList)).call(this, props));
 
-        _this.state = {};
+        _this.state = {
+            chanels: []
+        };
         return _this;
     }
 
@@ -55860,44 +55863,50 @@ var ChanelList = function (_Component) {
     }, {
         key: 'getChanels',
         value: function getChanels() {
+            var _this2 = this;
+
             var url = route('api.chanel.list').url();
-            axios.get(url).then(function (response) {
-                // handle success
-                console.log(response.data.data);
-            }).catch(function (error) {
-                // handle error
-                console.log(error);
+
+            axios.get(url).then(function (data) {
+                return _this2.setState({
+                    chanels: data.data.data
+                });
             });
         }
     }, {
         key: 'render',
         value: function render() {
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                { className: 'chat_list active_chat' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+
+            var chanelList = this.state.chanels.map(function (chanel, index) {
+                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
-                    { className: 'chat_people' },
+                    { className: 'chat_list active_chat', key: chanel.id },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
-                        { className: 'chat_ib' },
+                        { className: 'chat_people' },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'h5',
-                            null,
-                            'Sunil Rajput ',
+                            'div',
+                            { className: 'chat_ib' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'span',
-                                { className: 'chat_date' },
-                                'Dec 25'
+                                'h5',
+                                null,
+                                chanel.name,
+                                ' ',
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                    'span',
+                                    { className: 'chat_date' },
+                                    'Dec 25'
+                                )
                             )
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'p',
-                            null,
-                            'Test, which is a new approach to have all solutions astrology under one roof.'
                         )
                     )
-                )
+                );
+            });
+
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                null,
+                chanelList
             );
         }
     }]);
@@ -55919,6 +55928,82 @@ if (document.getElementById('app')) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+var NewChannel = function (_Component) {
+    _inherits(NewChannel, _Component);
+
+    function NewChannel(props) {
+        _classCallCheck(this, NewChannel);
+
+        var _this = _possibleConstructorReturn(this, (NewChannel.__proto__ || Object.getPrototypeOf(NewChannel)).call(this, props));
+
+        _this.chanelName = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createRef();
+        return _this;
+    }
+
+    _createClass(NewChannel, [{
+        key: 'render',
+        value: function render() {
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'form',
+                { className: 'form-inline' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'from-group' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', ref: this.chanelName, id: 'chanelName', className: 'form-control', placeholder: 'new chanel' })
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'button',
+                    { type: 'button', className: 'btn btn-primary', onClick: this.handleNewChanel },
+                    'New'
+                )
+            );
+        }
+    }, {
+        key: 'handleNewChanel',
+        value: function handleNewChanel(e) {
+            var url = route('api.chanel.create');
+            var name = document.getElementById('chanelName').value;
+            axios.post(url, { name: name }).then(function (respose) {
+                console.log(respose.data);
+            });
+        }
+    }]);
+
+    return NewChannel;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (NewChannel);
+
+
+if (document.getElementById('app')) {
+    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(NewChannel, null), document.getElementById('new-chanel'));
+}
 
 /***/ })
 /******/ ]);

@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Chanel extends Model
 {
-    protected $fillable = ['status'];
+    protected $fillable = ['status', 'name'];
 }

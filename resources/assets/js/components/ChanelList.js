@@ -4,7 +4,9 @@ import ReactDOM from 'react-dom';
 export default class ChanelList extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            chanels: []
+        }
     }
 
     componentDidMount()
@@ -13,30 +15,30 @@ export default class ChanelList extends Component {
     }
 
     getChanels() {
+
         let url = route('api.chanel.list').url();
+
         axios.get(url)
-            .then(function (response) {
-                // handle success
-                console.log(response.data.data);
-            })
-            .catch(function (error) {
-                // handle error
-                console.log(error);
-            });
+            .then(data => this.setState({
+                chanels: data.data.data
+            }));
+
     }
     render() {
-        return (
-            <div className="chat_list active_chat">
+
+        let chanelList = this.state.chanels.map((chanel, index) =>
+            <div className="chat_list active_chat" key={chanel.id}>
                 <div className="chat_people">
-                    {/*<div className="chat_img">*/}
-                        {/*<img src="https://ptetutorials.com/images/user-profile.png" alt="sunil" />*/}
-                    {/*</div>*/}
                     <div className="chat_ib">
-                        <h5>Sunil Rajput <span className="chat_date">Dec 25</span></h5>
-                        <p>Test, which is a new approach to have all solutions
-                            astrology under one roof.</p>
+                        <h5>{chanel.name} <span className="chat_date">Dec 25</span></h5>
                     </div>
                 </div>
+            </div>
+        );
+
+        return (
+            <div>
+                {chanelList}
             </div>
         );
     }
