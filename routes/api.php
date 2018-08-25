@@ -18,5 +18,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::namespace('Api\v1')->group(function () {
-   Route::resource('chats', 'ChatController');
+
+   Route::group(['prefix' => 'chats'], function () {
+        Route::group(['prefix' => 'chanel'], function () {
+            Route::get('/', 'ChatController@chanel')->name('api.chanel.list');
+        });
+   });
 });

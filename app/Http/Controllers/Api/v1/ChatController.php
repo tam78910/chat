@@ -21,7 +21,7 @@ class ChatController extends Controller
         $this->chanelRepository = $chanelRepository;
     }
 
-    public function index()
+    public function chanel()
     {
         return new ChanelCollection($this->chanelRepository->get());
     }
